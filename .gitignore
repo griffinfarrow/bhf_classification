@@ -1,3 +1,10 @@
+# MacSpecific 
+.DS_Store
+
+# Data
+train_final.csv 
+training_data/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
