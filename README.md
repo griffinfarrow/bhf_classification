@@ -17,4 +17,6 @@ The challenge is multi-label classification. We have images of ECGs and we have 
 - Alternatively, is the way that we're pre-processing the data (transformations) actually not very sensible?
 - Or is ResNet18 just not the way to go?
   
-It does seem to be the case that the CLAHE contrast thing we're applying is washing out the images so there is nothing on them and the resizing is introducing artifacts. 
+It does seem to be the case that the CLAHE contrast thing we're applying is washing out the images so there is nothing on them and the resizing is introducing artifacts.   
+  
+I think something might be happening with class imbalance/some classes not having any predictions made for them. With significant changes, I still got the exact same accuracy score (seems unlikely). I'm getting the error that some classes have zero predictions made for them, which is setting a lot of the metrics to zero. This seems really unlikely, so I suspect something a bit fishy is happening. This could do with a bit more investigation.
