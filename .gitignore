@@ -5,6 +5,12 @@
 train_final.csv 
 data/*
 
+# Ignore virtual environment stuff
+bhf_venv/*
+
+# Ignore log files
+logs/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
