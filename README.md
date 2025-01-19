@@ -14,3 +14,4 @@ The challenge is multi-label classification. We have images of ECGs and we have 
 - We seem to be predicting every image has 0 for every category: seems maybe a bit unlikely, even if it were to be random, you'd maybe expect some 1s if totally randomly initialised originally? 
 - Finding that the raw prediction values for each of the categories is extremely low 
 - Validation loss is not decreasing over time: the model just doesn't really seem to work?
+- Seems like resizing the images introduces strong artifacts that make it quite difficult to see *anything* at all 
