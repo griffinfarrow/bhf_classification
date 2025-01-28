@@ -22,3 +22,4 @@ The challenge is multi-label classification. We have images of ECGs and we have 
 | Find a set of transformations that makes the images better | Improve the quality of the images, possibly extract just the paper region off the page, resize without artifacts | Images are very different; cannot seem to find a consistent set of transformations that improves them | Tried a few things, hasn't gone too well |
 | Using a set of pre-convolutions to deal with the image size aliasing problem | Would allow us to downsize a bit more intelligently without losing too much information, have a set of Conv/Pool layers to reduce image size down from something large to 224x224 and then feed to ResNet | Computational expense | Not yet |
 | Using VisionTransformers or DoNuT? | Existing implementations of document recognition are out there, maybe one of those will help | Bit of a shot in the dark | Yes, DoNuT was difficult to install so far, but we didn't try that hard |
+
