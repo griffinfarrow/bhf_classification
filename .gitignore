@@ -11,6 +11,9 @@ bhf_venv/*
 # Ignore log files
 logs/*
 
+# Ignore large trained models 
+*.pth
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
