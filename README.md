@@ -25,8 +25,13 @@ This seemed to not work at all. The mask loss predicted by the model was always 
 
 I've found an alternative segmentation model that seems to work really well. This in in `external_seg_model.ipynb`. This comes from https://github.com/veb-101/Document-Segmentation-using-Pytorch-DeepLabV3/tree/main and the model weights are on Kaggle at https://www.kaggle.com/models/abdxlhaxk/document-detection. On preliminary testing, this model seems to be very good at the document segmentation, so we're going to use it as part of the full ECG classification pipeline.
 
+### 3) ECG Classification Model 
+
+These are complete ECG classification models, that take in the input images and do multi-label classification. See "Past Attempts" for the different models that have been tried 
+
 ## Past Attempts 
 
 | Idea | What?            |Code?| Results                   | 
 |------|------------------|-----|---------------------------|
 | End-to-end approach | No pre-processing of images. Just use `Albumentations` for transformations to the data, then feed into a pre-trained `ResNet-18` model for fine-tuning. Last layer of `ResNet-18` adapted for multi-label classification instead | `ecg_classification_model/bhf-heart-rhythm-classification.ipynb` | Didn't seem to work. Produced nearly 0 probability for all class labels and training didn't improve things at all. Possibly because when the images are resized from their original $1900 \times 3460$ to $224 \times 224$, it really badly aliases them and you end up not being able to actually see anything in the data at all. |
+Combine with a segmentation model | Uses a pre-trained segmentation model and perspective transformation to "focus" the photos on the ECGs, and then fine-tunes `ResNet18` on that. | `ecg_classification_model/classification_with_segmentation.ipynb` | Still in training. Very slow to train because the image processing currently has to be run on the CPU because of all manner of multiprocessing bugs. This is the bottleneck |
