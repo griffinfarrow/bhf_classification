@@ -1,0 +1,5 @@
+model, image_size, training_time
+b0, 224, ~5 mins/epoch
+b2, 260, ~5.5 mins/epoch 
+b4, 380, ~6.5 mins/epoch 
+ResNet 18, 224, ~5 mins/epoch

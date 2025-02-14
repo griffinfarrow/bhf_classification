@@ -19,7 +19,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
-#
+# Model data
+*.pth
 
 # C extensions
 *.so
