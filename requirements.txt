@@ -104,7 +104,6 @@ jupyter_client==8.6.3
 jupyter_core==5.7.2
 kaggle==1.6.17
 kiwisolver==1.4.8
-label-studio-sdk==1.0.8
 launchdarkly-server-sdk==8.2.1
 lazy_loader==0.4
 lmdb==1.6.2
