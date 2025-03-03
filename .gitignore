@@ -1,3 +1,4 @@
+
 # MacSpecific 
 .DS_Store
 
@@ -6,7 +7,7 @@ train_final.csv
 data/*
 
 # Ignore virtual environment stuff
-bhf_venv/*
+.python-version
 
 # Ignore log files
 logs/*
