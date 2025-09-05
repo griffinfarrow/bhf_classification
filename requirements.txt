@@ -78,6 +78,7 @@ numpy==2.2.6
     #   opencv-python
     #   opencv-python-headless
     #   pandas
+    #   pycocotools
     #   scikit-learn
     #   scipy
     #   seaborn
@@ -115,6 +116,8 @@ ptyprocess==0.7.0
     # via pexpect
 pure-eval==0.2.3
     # via stack-data
+pycocotools==2.0.10
+    # via -r requirements.in
 pydantic==2.11.7
     # via albumentations
 pydantic-core==2.33.2
