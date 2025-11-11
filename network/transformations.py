@@ -45,28 +45,32 @@ class CornerCutout(ImageOnlyTransform):
         return img
     
 class PaperFoldEffect(ImageOnlyTransform):
-    """
-    Vertical paper fold effect - creates vertical fold lines down the image
-    """
-    
-    def __init__(self, max_intensity=0.3, fold_width=4, always_apply=False, p=0.5):
+    def __init__(self, max_intensity=0.5, fold_width=20, always_apply=False, p=0.5):
         super().__init__(always_apply, p)
         self.max_intensity = max_intensity
-        self.fold_width = fold_width  # Width of fold line in pixels
-        
+        self.fold_width = fold_width
+
     def apply(self, img, **params):
+        img = img.copy().astype(np.float32)
         h, w = img.shape[:2]
-        
-        # Vertical fold position (20-80% across width)
+        fold_width = int(0.1 * w)
         fold_pos = random.uniform(0.2, 0.8)
         fold_pos_px = int(w * fold_pos)
-        half_width = self.fold_width // 2
+        half_width = fold_width // 2
+
+        left = max(0, fold_pos_px - half_width)
+        right = min(w, fold_pos_px + half_width)
+
+        # stronger darkening
+        intensity = random.uniform(0.5, 0.8)
+
+        img[:, left:right] *= intensity
+
+        # Optional: add subtle bright highlight edges
+        img[:, left-2:left] *= 1.1
+        img[:, right:right+2] *= 1.1
         
-        # Darken the fold region
-        intensity = random.uniform(0.7, 0.9)
-        img[:, max(0, fold_pos_px - half_width):min(w, fold_pos_px + half_width)] *= intensity
-        
-        return img.astype(np.uint8)
+        return np.clip(img, 0, 255).astype(np.uint8)
     
 class GradientShadow(ImageOnlyTransform):
     """
