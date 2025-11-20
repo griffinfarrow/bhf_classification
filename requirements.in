@@ -12,4 +12,5 @@ opencv-python
 pillow 
 albumentations
 pycocotools
+h5py
 
