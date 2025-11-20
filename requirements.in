@@ -13,4 +13,5 @@ pillow
 albumentations
 pycocotools
 h5py
+tabulate
 
