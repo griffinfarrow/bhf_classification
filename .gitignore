@@ -172,7 +172,6 @@ dmypy.json
 cython_debug/
 
 .vscode/*
-.python-version
 
 # Ignore checkpoints: they clog up the space 
 *.pth 
