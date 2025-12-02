@@ -6,9 +6,6 @@
 train_final.csv 
 data/*
 
-# Ignore virtual environment stuff
-.python-version
-
 # Ignore log files
 logs/*
 
