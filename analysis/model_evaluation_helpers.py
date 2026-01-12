@@ -215,6 +215,7 @@ def compute_ranking_metrics(all_y_true, all_y_pred):
     per_label_ece = []
     per_label_precision = []
     per_label_recall = []
+    per_label_specificity = []
     
     for j in range(L):
         
@@ -251,24 +252,32 @@ def compute_ranking_metrics(all_y_true, all_y_pred):
         best_t = 0.5
         best_p = 0
         best_r = 0
-
+        best_spec = 0
+        
         for t in np.linspace(0.01, 0.99, 99):
             preds_bin = (y_pred >= t).astype(int)
 
             f1 = f1_score(y_true, preds_bin, zero_division=0)
             p = precision_score(y_true, preds_bin, zero_division=0)
             r = recall_score(y_true, preds_bin, zero_division=0)
+            # Calculate specificity: TN / (TN + FP)
+            tn = np.sum((y_true == 0) & (preds_bin == 0))
+            fp = np.sum((y_true == 0) & (preds_bin == 1))
+            spec = tn / (tn + fp) if (tn + fp) > 0 else 0.0
 
             if f1 > best_f1:
                 best_f1 = f1
                 best_t = t
                 best_p = p
                 best_r = r
+                best_spec = spec 
+
 
         thresholds.append(round(float(best_t), 2))
         per_label_f1s.append(float(best_f1))
         per_label_precision.append(float(best_p))
         per_label_recall.append(float(best_r))
+        per_label_specificity.append(float(best_spec))
         # ----- ECE -----
         ece = compute_ece(y_true, y_pred)
         per_label_ece.append(float(ece))
@@ -314,6 +323,7 @@ def compute_ranking_metrics(all_y_true, all_y_pred):
         "per_label_f1": per_label_f1s,
         "per_label_precision": per_label_precision, 
         "per_label_recall": per_label_recall, 
+        "per_label_specificity": per_label_specificity,
         "per_label_ece": per_label_ece,
         "thresholds": thresholds,
         "macro_ap": float(macro_ap),
